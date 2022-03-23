@@ -10,7 +10,7 @@ phases:
     commands: 
     - echo Logging in to Amazon ECR.... 
     - aws --version
-	- docker pull arigapudi/servenv:1.00.00
+    - docker pull arigapudi/servenv:1.00.00
     # update the following line with your own region
     #- $(aws ecr get-login --no-include-email --region us-east-2)
     - REPOSITORY_URI=876149182222.dkr.ecr.us-east-2.amazonaws.com/crep01
