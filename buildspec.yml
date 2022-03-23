@@ -18,8 +18,8 @@ phases:
     commands: 
     - echo Build started on `date` 
     - echo Building the Docker image... 
-    - docker tag arigapudi/servenv:1.00.00 $REPOSITORY_URI/servenv:1.00.00
-    - docker tag arigapudi/servenv:1.00.00 $REPOSITORY_URI/servenv:latest
+    - docker tag arigapudi/servenv:1.0.0 $REPOSITORY_URI/servenv:1.00.00
+    - docker tag arigapudi/servenv:1.0.0 $REPOSITORY_URI/servenv:latest
   post_build: 
     commands: 
     - echo Build completed on `date` 
