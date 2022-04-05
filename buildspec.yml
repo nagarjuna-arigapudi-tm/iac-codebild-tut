@@ -17,6 +17,7 @@ phases:
   build: 
     commands: 
     - cat ${CODEBUILD_SRC_DIR}/copyrepos.json
+    - jq -c '.[]' ${CODEBUILD_SRC_DIR}/copyrepos.json
     - echo Build started on `date` 
     - echo Building the Docker image... 
     - docker tag arigapudi/servenv:1.0.0 $REPOSITORY_URI:1.00.00
