@@ -1,4 +1,4 @@
-version: 0.3
+version: 1.0
 phases: 
   install:
     runtime-versions:
@@ -10,23 +10,18 @@ phases:
     commands: 
     - echo Logging in to Amazon ECR.... 
     - aws --version
-    - docker pull arigapudi/servenv:1.0.0
-    # update the following line with your own region
-    #- $(aws ecr get-login --no-include-email --region us-east-2)
-    - REPOSITORY_URI=876149182222.dkr.ecr.us-east-2.amazonaws.com/crep01
+
   build: 
     commands: 
     - cat ${CODEBUILD_SRC_DIR}/copyrepos.json
     - jq -c '.[]' ${CODEBUILD_SRC_DIR}/copyrepos.json
-    - echo Build started on `date` 
-    - echo Building the Docker image... 
-    - docker tag arigapudi/servenv:1.0.0 $REPOSITORY_URI:1.00.00
-    - docker tag arigapudi/servenv:1.0.0 $REPOSITORY_URI:latest
-  post_build: 
-    commands: 
-    - echo Build completed on `date` 
-    - echo pushing to repo
-    # update the following line with the URI of your own ECR repository
-    - $(aws ecr get-login --no-include-email --region us-east-2)
-    - docker push $REPOSITORY_URI:1.00.00
-    - docker push $REPOSITORY_URI:latest
+    - jq -c '.[]' ${CODEBUILD_SRC_DIR}/copyrepos.json | while read item; do
+       src=$(jq -r '.source' <<< "$item");
+	     trg=$(jq -r '.target' <<< "$item");
+	     rgn=$(jq -r '.region' <<< "$item");
+	     act=$(jq -r '.aws_account_id' <<< "$item");
+	     docker pull $src
+	     docker tag $src $trg
+	     aws ecr get-login-password --region $rgn | docker login --username AWS --password-stdin $act.dkr.ecr.$rgn.amazonaws.com
+	     docker push $trg
+     done
