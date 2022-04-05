@@ -9,7 +9,7 @@
    {
       "source":"arigapudi/servenv:latest",
       "target_URI":"876149182222.dkr.ecr.us-east-2.amazonaws.com/crep01:latest",
-	  "region":"us-east-2"
+	  "region":"us-east-2",
 	  "aws_account_id":"876149182222"
 
 
