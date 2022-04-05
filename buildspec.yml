@@ -16,10 +16,10 @@ phases:
     - cat ${CODEBUILD_SRC_DIR}/copyrepos.json
     - jq -c '.[]' ${CODEBUILD_SRC_DIR}/copyrepos.json
     - jq -c '.[]' ${CODEBUILD_SRC_DIR}/copyrepos.json | while read item; do
-       src=$(jq -r '.source' <<< "$item");
-	     trg=$(jq -r '.target' <<< "$item");
-	     rgn=$(jq -r '.region' <<< "$item");
-	     act=$(jq -r '.aws_account_id' <<< "$item");
+             src=$(jq -r '.source' <<< "$item");
+             trg=$(jq -r '.target' <<< "$item");
+             rgn=$(jq -r '.region' <<< "$item");
+             act=$(jq -r '.aws_account_id' <<< "$item");
              docker pull $src
              docker tag $src $trg
              aws ecr get-login-password --region $rgn | docker login --username AWS --password-stdin $act.dkr.ecr.$rgn.amazonaws.com
