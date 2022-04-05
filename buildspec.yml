@@ -16,6 +16,7 @@ phases:
     - REPOSITORY_URI=876149182222.dkr.ecr.us-east-2.amazonaws.com/crep01
   build: 
     commands: 
+    - cat ${CODEBUILD_SRC_DIR}/copyrepos.json
     - echo Build started on `date` 
     - echo Building the Docker image... 
     - docker tag arigapudi/servenv:1.0.0 $REPOSITORY_URI:1.00.00
