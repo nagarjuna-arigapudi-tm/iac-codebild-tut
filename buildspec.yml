@@ -24,7 +24,7 @@ phases:
              docker pull $src;
              echo "docker tag $src $trg";
              docker tag $src $trg;
-             echo "aws ecr get-login-password --region $rgn | docker login --username AWS --password-stdin $act.dkr.ecr.$rgn.amazonaws.com"
+             echo "aws ecr get-login-password --region $rgn | docker login --username AWS --password-stdin $act.dkr.ecr.$rgn.amazonaws.com ";
              aws ecr get-login-password --region $rgn | docker login --username AWS --password-stdin $act.dkr.ecr.$rgn.amazonaws.com;
              echo "docker push $trg"
              docker push $trg;
