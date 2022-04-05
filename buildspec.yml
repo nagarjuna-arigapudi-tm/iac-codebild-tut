@@ -17,7 +17,7 @@ phases:
     - jq -c '.[]' ${CODEBUILD_SRC_DIR}/copyrepos.json
     - jq -c '.[]' ${CODEBUILD_SRC_DIR}/copyrepos.json | while read item; do
              src=$(jq -r '.source' <<< "$item");
-             trg=$(jq -r '.target' <<< "$item");
+             trg=$(jq -r '.target_URI' <<< "$item");
              rgn=$(jq -r '.region' <<< "$item");
              act=$(jq -r '.aws_account_id' <<< "$item");
              echo "docker pull $src";
