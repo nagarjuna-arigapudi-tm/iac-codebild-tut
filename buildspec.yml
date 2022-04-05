@@ -20,8 +20,8 @@ phases:
              trg=$(jq -r '.target' <<< "$item");
              rgn=$(jq -r '.region' <<< "$item");
              act=$(jq -r '.aws_account_id' <<< "$item");
-             docker pull $src
-             docker tag $src $trg
-             aws ecr get-login-password --region $rgn | docker login --username AWS --password-stdin $act.dkr.ecr.$rgn.amazonaws.com
-             docker push $trg
+             docker pull $src;
+             docker tag $src $trg;
+             aws ecr get-login-password --region $rgn | docker login --username AWS --password-stdin $act.dkr.ecr.$rgn.amazonaws.com;
+             docker push $trg;
      done
