@@ -1,0 +1,18 @@
+[
+   {
+      "source":"arigapudi/servenv:1.0.0",
+      "target_URI":"876149182222.dkr.ecr.us-east-2.amazonaws.com/crep01",
+      "tags":[
+         "1.00.00",
+         "latest"
+      ]
+   },
+   {
+      "source":"arigapudi/servenv:latest",
+      "target_URI":"876149182222.dkr.ecr.us-east-2.amazonaws.com/crep01",
+      "tags":[
+         "1.10.00",
+         "latest"
+      ]
+   }
+]
